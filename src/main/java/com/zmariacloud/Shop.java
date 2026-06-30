@@ -21,4 +21,20 @@ public class Shop {
             System.out.println(String.format("%s: %d", product.getName(), this.inventory.get(product)));
         }
     }
+
+    public boolean isInInventory(String what) {
+        for (Product product : this.inventory.keySet()) {
+            if (product.getName() == what) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void gameLoop() {
+        Customer customer = new Customer();
+        if (isInInventory(customer.wish)) {
+            System.out.println(String.format("You do have '%s' in your inventory. Sell?", customer.wish));
+        }
+    }
 }

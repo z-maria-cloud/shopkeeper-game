@@ -7,9 +7,9 @@ public class ProductFactory {
     HashMap<String, Product> allProducts = new HashMap<>();
 
     public ProductFactory() {
-        allProducts.put("Apple", new Product(0.5, "Apple"));
-        allProducts.put("Strawberry", new Product(0.2, "Strawberry"));
-        allProducts.put("Chocolate", new Product( 2.3, "Chocolate"));
+        for (String productName : Utils.getGlobalProductsNames()) {
+            allProducts.put(productName, new Product(productName, Utils.getGlobalProductPrice(productName)));
+        }
     }
 
     public Set<String> getProductsList(){
