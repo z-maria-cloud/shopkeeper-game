@@ -3,22 +3,28 @@ package main.java.com.zmariacloud;
 import java.util.HashMap;
 
 public class Shop {
-    ProductFactory factory = new ProductFactory();
+    double money;
     HashMap<Product, Integer> inventory = new HashMap<>();
 
     public Shop() {
+        this.money = 0;
         fillRandomInventory(0, 50);
     }
 
     public void fillRandomInventory(int productMin, int productMax) {
-        for (String productName : this.factory.getProductsList()) {
-            inventory.put(this.factory.getProduct(productName), Utils.getRndInt(productMin, productMax));
+        for (String productName : Utils.factory.getProductsList()) {
+            inventory.put(Utils.factory.getProduct(productName), Utils.getRndInt(productMin, productMax));
         }
     }
 
     public void printInventory() {
+        System.out.println(String.format("You have %.2f$.", this.money));
         for (Product product : this.inventory.keySet()) {
-            System.out.println(String.format("%s: %d", product.getName(), this.inventory.get(product)));
+            System.out.println(String.format("%s: %d in stock. Individual price: %.2f$",
+            product.getName(),
+            this.inventory.get(product),
+            product.getPrice()
+            ));
         }
     }
 
@@ -31,10 +37,12 @@ public class Shop {
         return false;
     }
 
+    public int howManyInInventory() {
+        return 0;
+    }
+
     public void gameLoop() {
-        Customer customer = new Customer();
-        if (isInInventory(customer.wish)) {
-            System.out.println(String.format("You do have '%s' in your inventory. Sell?", customer.wish));
-        }
+        Customer c = new Customer();
+        System.out.println(String.format("Do you want to sell %d '%s'?", c.getWishQuantity(), c.getWishProduct()));
     }
 }

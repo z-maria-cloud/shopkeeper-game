@@ -1,19 +1,23 @@
 package main.java.com.zmariacloud;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.List;
 import java.util.Set;
 
 public class Utils {
+    static ProductFactory factory;
     static HashMap<String, Double> globalProductsList = new HashMap<>();
+    static List<String> customerWishLines = new ArrayList<String>();
 
     public Utils() {
+        this.factory = new ProductFactory();
         fillGlobalProductList();
     }
 
     static void fillGlobalProductList() {
         globalProductsList.put("Apple", 0.4);
-        globalProductsList.put("Strawberry", 0.2);
+        globalProductsList.put("Strawberry", 0.25);
         globalProductsList.put("Chocolate", 0.7);
     }
 
