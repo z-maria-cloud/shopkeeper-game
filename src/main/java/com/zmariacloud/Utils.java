@@ -1,0 +1,7 @@
+package main.java.com.zmariacloud;
+
+public class Utils {
+    static int getRndInt(int min, int max) {
+        return min + (int)(Math.random() * ((max - min) + 1));
+    }
+}
